@@ -1,0 +1,16 @@
+public class Mandelbrot {
+
+	public static void main(String[] args) {
+		MandelbrotGUI gui = new MandelbrotGUI();
+		while (true) {
+			switch (gui.getCommand()) {
+			case MandelbrotGUI.QUIT:
+				System.exit(0);
+				break;
+			case MandelbrotGUI.RESET:
+				gui.resetPlane();
+				gui.clearPlane();
+			}
+		}
+	}
+}

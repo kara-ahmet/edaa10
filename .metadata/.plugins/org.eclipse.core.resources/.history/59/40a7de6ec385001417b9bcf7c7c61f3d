@@ -1,0 +1,25 @@
+public class Generator {
+	/** Ritar en bild i fönstret i användargränssnittet gui */
+	public void render(MandelbrotGUI gui) {
+		gui.disableInput(); // Gör att knapparna i
+							// användargränssnittet inte reagerar på tryck och
+							// att beräkningarna inte störs av att användaren
+							// gör operationer i fönstret.
+		/**
+		 * Skapar en matris där varje element är ett komplext tal som har rätt
+		 * koordinater (se beskrivning nedan)
+		 */
+		private Complex[][] complex = mesh(gui.getMinimumReal(),
+				gui.getMaximumReal(), gui.getMinimumImag(),
+				gui.getMaximumImag(), gui.getWidth(), gui.getHeight());
+		// Anropar mesh för att skapa matrisen med komplexatal.
+		private Color[][] picture = new Color[gui.getHeight()][gui.getWidth()];
+		// Skapar matrisen som innehåller bildpunkterna som ska ritas.
+		if(z.getAbs2() > 1){
+            picture[i][k] = Color.WHITE;
+		}
+		else{
+			picture[i][k] = Color.RED;
+		}
+	}
+}

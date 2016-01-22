@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 elements to &apos;cs_eda501/src&apos;&#x0A;- Original project: &apos;cs_eda501&apos;&#x0A;- Destination element: &apos;cs_eda501/src&apos;&#x0A;- Original elements:&#x0A;     HelpTest.java&#x0A;     HelloWorld.java&#x0A;- Update references to refactored element" description="Move files" destination="/src" element1="HelpTest.java" element2="HelloWorld.java" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1316419992457" units="0" version="1.0"/>
+</session>

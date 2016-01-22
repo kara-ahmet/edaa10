@@ -1,0 +1,22 @@
+public class Mandelbrot {
+	public static void main(String[] args) {
+		MandelbrotGUI gui = new MandelbrotGUI();
+		Generator g = new Generator();
+		while (true) {
+			switch (gui.getCommand()) {
+			case MandelbrotGUI.QUIT:
+				System.exit(0); // Stänger ner programmet
+				break;
+			case MandelbrotGUI.RESET:
+				gui.resetPlane(); // Återställer värden på koordinataxlarna
+				gui.clearPlane(); // Nollställer informationen i fönstret
+				break;
+			case MandelbrotGUI.ZOOM:
+				g.render(gui);
+				break;
+			case MandelbrotGUI.RENDER:
+				g.render(gui);
+			}
+		}
+	}
+}

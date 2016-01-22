@@ -1,0 +1,9 @@
+import se.lth.cs.window.SimpleWindow;
+public class test2 {
+
+	public static void main(String[] args) {
+		SimpleWindow w = new SimpleWindow(100, 100, "Fösnter");
+		w.draw("Hej");
+	}
+
+}

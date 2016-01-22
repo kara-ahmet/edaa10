@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.w3c.dom.Text"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="se.lth.cs.p.ovn.life.LifeBoard"/>
+<fullyQualifiedTypeName name="se.lth.cs.p.ovn.shapes.Shape"/>
+<fullyQualifiedTypeName name="se.lth.cs.p.ovn.shapes.ShapeList"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="se.lth.cs.window.SimpleWindow"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,107 @@
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class MainProgramme {
+	private ArrayList<Color> colors;
+
+	public MainProgramme() {
+		colors = new ArrayList<Color>();
+		Random r = new Random();
+		for (int i = 0; i < 200; i++) {
+			colors.add(new Color(
+					(int) (r.nextDouble()
+							* ((double) Integer.MAX_VALUE - (double) Integer.MIN_VALUE) + Integer.MIN_VALUE)));
+		}
+	}
+
+	/** Ritar en bild i fönstret i användargränssnittet gui */
+	public void render(MandelbrotGUI gui) {
+		gui.disableInput(); // Gör att knapparna i
+							// användargränssnittet inte reagerar på tryck och
+							// att beräkningarna inte störs av att användaren
+							// gör operationer i fönstret.
+		int width = gui.getWidth();
+		int height = gui.getHeight();
+		int pixelSize;
+
+		switch (gui.getResolution()) {
+		case MandelbrotGUI.RESOLUTION_VERY_HIGH: // 1x1
+			pixelSize = 1;
+			break;
+		case MandelbrotGUI.RESOLUTION_HIGH: // 3x3
+			pixelSize = 3;
+			break;
+		case MandelbrotGUI.RESOLUTION_MEDIUM: // 5x5
+			pixelSize = 5;
+			break;
+		case MandelbrotGUI.RESOLUTION_LOW: // 7x7
+			pixelSize = 7;
+			break;
+		case MandelbrotGUI.RESOLUTION_VERY_LOW: // 9x9
+			pixelSize = 9;
+			break;
+		default:
+			pixelSize = 1; // Standardupplösning
+
+			Complex[][] mesh = mesh(gui.getMinimumReal(), gui.getMaximumReal(),
+					gui.getMinimumImag(), gui.getMaximumImag(), width, height);
+			// Anropar mesh för att skapa matrisen med komplexatal.
+
+			Color[][] picture = new Color[Math
+					.round((float) height / pixelSize)][Math
+					.round((float) width / pixelSize)]; // Skapar matrisen som
+														// innehåller
+														// bildpunkterna som ska
+														// ritas.
+			for (int y = 0; y < picture.length; y++) {
+				for (int x = 0; x < picture[0].length; x++) {
+					Complex c = mesh[pixelSize / 2 + y * pixelSize][pixelSize
+							/ 2 + x * pixelSize];
+					Complex old = new Complex(0, 0);
+					int i = 0;
+					while (i < 200 && old.getAbs2() < 4) {
+						old.mul(old);
+						old.add(c);
+						i++;
+					}
+					if (gui.getMode() == MandelbrotGUI.MODE_BW) {
+						if (i < 200) {
+							picture[y][x] = Color.WHITE;
+						} else {
+							picture[y][x] = Color.BLACK;
+						}
+					} else {
+						if (i < 200) {
+							picture[y][x] = colors.get(i);
+						} else {
+							picture[y][x] = Color.BLACK;
+						}
+					}
+				}
+			}
+			gui.putData(picture, pixelSize, pixelSize);
+			gui.enableInput(); // Återställer funktionen hos
+			// användargränssnittets
+			// knappar.
+		}
+	}
+
+	/**
+	 * Skapar en matris där varje element är ett komplext tal som har rätt
+	 * koordinater
+	 */
+	private Complex[][] mesh(double minRe, double maxRe, double minIm,
+			double maxIm, int width, int height) {
+		Complex[][] mesh = new Complex[height][width];
+		double yStep = (maxIm - minIm) / (height - 1);
+		double xStep = (maxRe - minRe) / (width - 1);
+
+		for (int i = 0; i < height; i++) {
+			for (int k = 0; k < width; k++) {
+				mesh[i][k] = new Complex(minRe + k * xStep, maxIm - i * yStep);
+			}
+		}
+		return mesh;
+	}
+}
